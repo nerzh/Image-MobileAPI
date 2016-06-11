@@ -1,0 +1,178 @@
+=README
+
+=Using API:
+
+==Autorization
+* login route: POST www.domain.com/api/sessions/login
+
+* format request: api/sessions/login?param&param...
+
+    user[email]=email@gmail.com
+    user[password]=12345678
+
+* format response: JSON and HTTP Headers
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+    -[APP_ERROR] = 'undefined string if not errors'
+    -HTTP status code success 201
+
+* ==EXAMPLE OBJECT JSON OF USER{...}
+
+    user.id
+    user.api_token
+    user.email
+    user.images - Array of 'image'  [object,object...]
+        image.orig_name - 'name'
+        image.file - 'image.jpg'
+        image.resized_files - Array of 'resized_files' [object,object...]
+            resized_file.file - 'resized_file.id.jpg'
+            resized_file.size      - '100x100'
+
+* logout route: DELETE www.domain.com/api/sessions/logout
+
+* format request: api/sessions/logout
+
+  -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+
+* format response:
+
+HTTP status code success 200
+
+== CrUD Users
+
+*  route create: POST www.domain.com/api/users/create
+
+* format request: api/users/create?param&param...
+
+    user[email]=email@gmail.com
+    user[password]=12345678
+    user[password_confirmation]=12345678
+
+* format response: JSON and HTTP Headers
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+    -[APP_ERROR] = 'undefined string if not errors'
+  
+    HTTP status code success 201
+
+    JSON {...} of user
+
+*  route update: PATCH www.domain.com/api/users/update
+
+* format request: api/users/update
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+
+* format response: JSON and HTTP Headers
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+    -[APP_ERROR] = 'undefined string if not errors'
+  
+    HTTP status code success 200
+
+    JSON {...} of user
+
+*  route delete: DELETE www.domain.com/api/users/delete
+
+* format request: api/users/delete
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+
+* format response: JSON and HTTP Headers
+  
+    -[APP_ERROR] = 'undefined string if not errors'
+  
+    HTTP status code success 410
+
+    JSON {...} of deleted user
+
+== Resize Images
+
+*  route index: GET www.domain.com/api/images/index
+
+* format request: api/images/index
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+
+* format response: JSON and HTTP Headers
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+    -[APP_ERROR] = 'undefined string if not errors'
+  
+    HTTP status code success 200
+
+    JSON {...} Images of current user
+    
+=== example
+    {
+    "5650f8822069b6eb8f000001": {
+        "orig_name": "5650f8822069b6eb8f000001.JPG",
+        "url": "localhost:3000/uploads/email@gmail.com/5650f8822069b6eb8f000001/5650f8822069b6eb8f000001.JPG",
+        "resized_files": [
+            {
+                "image": {
+                    "size": "100x100",
+                    "url": "localhost:3000/uploads/email@gmail.com/5650f8822069b6eb8f000001/5650f8822069b6eb8f000002.JPG"
+                }
+            }
+        ]
+    },
+    "5650f8b42069b6eb8f000003": {
+        "orig_name": "5650f8b42069b6eb8f000003.JPG",
+        "url": "localhost:3000/uploads/email@gmail.com/5650f8b42069b6eb8f000003/5650f8b42069b6eb8f000003.JPG",
+        "resized_files": [
+            {
+                "image": {
+                    "size": "100x100",
+                    "url": "localhost:3000/uploads/email@gmail.com/5650f8b42069b6eb8f000003/5650f8b42069b6eb8f000004.JPG"
+                }
+            },
+            {
+                "image": {
+                    "size": "100x100",
+                    "url": "localhost:3000/uploads/email@gmail.com/5650f8b42069b6eb8f000003/56512e392069b60399000006.JPG"
+                }
+            }
+          ]
+    }
+  }
+  
+*  route new_image: POST www.domain.com/api/images/new_image
+
+* format request: api/images/new_image?param&param...
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+    file = file
+    size = '160x160'
+
+* format response: JSON and HTTP Headers
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+    -[APP_ERROR] = 'undefined string if not errors'
+  
+    HTTP status code success 201
+
+    JSON {...} of resized image
+
+*  route old_image: POST www.domain.com/api/images/old_image
+
+* format request: api/images/old_image?param&param...
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+    
+    id = '...'  -  id of image
+  
+    size = '160x160'
+
+* format response: JSON and HTTP Headers
+
+    -[HTTP_API_TOKEN] = 'Token lksjd87s-9d7a8_sdkasS'
+    -[APP_ERROR] = 'undefined string if not errors'
+  
+    HTTP status code success 201
+
+    JSON {...} of resized image
+
+
+
+<tt>rake doc:app</tt>.
