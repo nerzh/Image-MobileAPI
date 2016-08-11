@@ -1,3 +1,28 @@
+{<img src="https://codeclimate.com/github/woodcrust/Image-MobileAPI/badges/gpa.svg" />}[https://codeclimate.com/github/woodcrust/Image-MobileAPI]
+=Task
+We are creating mobile app that allows user to resize uploaded photos. You will need to create backend server that will provide api for this app.
+
+The main app functionalities:
+
+User can use mobile app to upload image and pass resize parameters. In response he will receive resized image
+User can see list of his earlier resized images with resize results and resizing parameters
+User can resize old image one more time passing old image id and new resize parameters
+When new user starts using mobile app it request server for unique key which is used to subscribe user requests
+Api need to return proper errors in proper format for invalid user inputs
+All images should be returned as link to image and width and height values
+We will need to handle different client app versions. That’s why we need api versioning mechanism
+
+Requirements:
+You need to implement backend and create api format with api documentation
+You can use any language and framework of your choice as well as third party libraries. 
+You need to use noSql database
+Results should be presented as github repository
+
+We will rate: 
+technology stack choice
+code quality
+git workflow 
+
 =README
 
 =Using API:
